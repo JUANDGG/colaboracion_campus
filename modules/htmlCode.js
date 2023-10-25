@@ -20,11 +20,9 @@ const cursos =(urlCurso)=>{
 
 const contenedorCurso = (seccionNombre) => {
     return `
-        <div id="targeta">
-
-            <h5 class="card-title">${seccionNombre}</h5>
-            <div id="${seccionNombre}Id"><div>
-        </div>
+        <button id="targeta">
+            ${seccionNombre}
+        </button>
 
     `;
 }

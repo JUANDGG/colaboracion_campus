@@ -5,7 +5,7 @@ import {contenedorCurso,cursos} from "./htmlCode.js"
 
 
 const root = document.getElementById("root")
-
+const videos = document.getElementById("videos")
 
 let nombreCurso =sessionStorage.getItem("nombre_curso")
 
@@ -60,39 +60,38 @@ const crearTargeta =()=>{
         root.innerHTML +=ct
         
     })
-
-
-    /* let targeta =document.querySelectorAll("#targeta")
-    targeta.forEach(targ =>{
-        
-        let bodyTargeta = targ.lastElementChild
-        
-
-        
-        
-    }) */
-    
-    entradas.forEach(e=>{
-
-        let video =e[1].slice(0,2)
-
-        video.forEach(ee=>{
-            let ct = cursos(ee)
-            root.innerHTML +=ct
-        })
-    
-
-        console.log(video)
-
-       /*  video.forEach(videos =>{
-            
-        }) */
-
-        
-    })
-
 }  
+
+
+const verContenidoTargeta =()=>{
+    const targeta = document.querySelectorAll("#targeta")
+    targeta.forEach(element =>{
+        element.addEventListener("click",(e)=>{
+            let data = JSON.parse(sessionStorage.getItem("videos"))
+            
+
+            if(data[e.target.textContent.trim()]){
+
+                let hash =data[e.target.textContent.trim()]
+
+                for(let i in hash){
+                    let cu = cursos(hash[i])
+                    videos.innerHTML +=cu
+                }
+
+                
+                
+            }
+
+
+        })
+    })
+}
+
+
+
 
 
 crearCurso()
 crearTargeta()
+verContenidoTargeta()
